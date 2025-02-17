@@ -65,17 +65,17 @@ Aplikacja znajduje się pod adresem #link("http://srv10.mikr.us:20381/"). Domyś
 == Rejestracja
 Aby zarejestrować się w aplikacji, należy wypełnić formularz rejestracyjny, znajdujący się pod adresem #link("http://srv10.mikr.us:20381/join/"). W formularzu trzeba podać kod zaproszenia, adres e-mail oraz stworzyć hasło. Następnie, aby dokończyć rejestrację, należy kliknąć przycisk "Sign up" (rys. 1).
 
-#figure(image("img/join.png", width: 40%), caption: "Formularz rejestracji")
+#figure(image("img_pl/join.png", width: 32%), caption: "Formularz rejestracji")
 
 == Logowanie
 Po utworzeniu konta można się zalogować do aplikacji. Ekran logowania znajduje się pod adresem #link("http://srv10.mikr.us:20381/login/"). Kod zaproszenia nie jest już wymagany. W formularzu logowania należy podać adres e-mail oraz hasło podane podczas rejestracji, a następnie kliknąć przycisk "Sign in" (rys. 2).
-#figure(image("img/sign_in.png", width: 40%), caption: "Formularz logowania")
+#figure(image("img_pl/sign_in.png", width: 35%), caption: "Formularz logowania")
 
 == Lista zbiorów danych
 Po zalogowaniu użytkownikowi wyświetlana jest lista zbiorów danych, które są dostępne do oznaczenia. Każdy zbiór danych zawiera informacje o nazwie, opisie oraz liczbie zdjęć. Aby przejść do oznaczania zdjęć, należy kliknąć nazwę wybranego zbioru. Jeżeli zajdzie potrzeba dodania nowego zbioru danych, można to zrobić poprzez kliknięcia *+* w prawym dolnym rogu ekranu. Aplikacja poprosi o podanie kodu zaproszenia do nowego zbioru.
 
 #figure(
-  image("img/lista_datasetow.png", width: 40%),
+  image("img_pl/datasets.png", width: 100%),
   caption: "Widok listy zbiorów danych"
 )
 
@@ -83,26 +83,26 @@ Po zalogowaniu użytkownikowi wyświetlana jest lista zbiorów danych, które s�
 Po przejściu do wybranego zbioru danych można rozpocząć oznaczanie zdjęć. W górnej części widoku prezentowany jest pasek postępu oznaczania oraz przycisk przejścia do widoku historii oznaczeń. W centralnej części, po lewej stronie, prezentowany jest obraz wraz z kontrolkami regulacji pozycji i powiększenia. Po prawej stronie widoczna jest lista dostępnych oznaczeń wraz z kryteriami, jakie powinno spełnić zdjęcie, by wybrać dane oznaczenie. Jeżeli klasyfikacja jest możliwa, należy wybrać odpowiednie oznaczenie z listy a następnie kliknąć `Submit`. 
 
 #figure(
-  image("img/widok_oznaczania.png", width: 40%),
+  image("img_pl/dataset_tagging.png", width: 90%),
   caption: "Widok oznaczania zdjęć"
 )
 
 Jeżeli klasyfikacja nie jest możliwa, ze względu na niejednoznaczność obrazu albo złą jakość zdjęcia należy wybrać opcję `Unclassifiable`. Wybranie tej opcji wiąże się z koniecznością uzasadnienia swojej decyzji w oknie tekstowym, które się pojawi. Po napisaniu uzasadnienia można wcisnąć przycisk `Mark as unclassifiable` aby przejść do dalszego oznaczania zdjęć.
 
 #figure(
-  image("img/unclassifiable.png", width: 40%),
+  image("img_pl/unclassifiable.png", width: 70%),
   caption: "Okno uzasadnienia decyzji o nieklasyfikowalności"
 )
 
 = Panel administracyjny
 Aplikacja posiada panel administracyjny, który pozwala na zarządzanie użytkownikami, zdjęciami oraz oznaczeniami. Panel ten jest dostępny pod adresem `http://srv10.mikr.us:20381/admin` i wymaga zalogowania się za pomocą konta administratora.
 #figure(
-	image("img/logowanie.png", width: 40%),
+	image("img_pl/logowanie.png", width: 40%),
 	caption: "Logowanie do panelu administracyjnego"
 )
 
 #figure(
-	image("img/admin_zalogowany.png", width: 40%),
+	image("img_pl/admin_zalogowany.png", width: 40%),
 	caption: "Sekcje panelu administracyjnego"
 )
 
@@ -117,7 +117,7 @@ Po zalogowaniu widocznych jest 6 sekcji:
 == Przesyłanie zbioru obrazów do oznaczenia
 Aby utworzyć i przesłać zbiór danych (obrazów) do oznaczania, należy przejść do sekcji *Datasets* i kliknąć przycisk *Add dataset*.
 #figure(
-  image("img/add_datasets.png", width: 80%),
+  image("img_pl/add_datasets.png", width: 80%),
   caption: "Widok listy zbiorów danych"
 )
 
@@ -130,7 +130,7 @@ Następnie należy podać:
 Oraz przesłać (pojedynczo przyciskiem _Add another Image_ lub zbiorowo poprzez sekcję _Bulk upload_) obrazy do oznaczenia.
 
 #figure(
-  image("img/add_dataset_form.png", width: 80%),
+  image("img_pl/add_dataset_form.png", width: 80%),
   caption: "Widok listy zbiorów danych"
 )
 
