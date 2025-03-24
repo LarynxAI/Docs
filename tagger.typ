@@ -20,14 +20,7 @@
         ]
       ]
     ],
-    footer: [
-      #place(
-        right,
-        dx: 1.55cm,
-        dy: 0.58cm,
-        text(fill: black, weight: 0, font: "Cascadia Code", fallback: false, [#counter(page).display()])
-      )
-    ]
+    
   )
   doc
 }
@@ -114,4 +107,5 @@ Nie jest wymagane ręczne tworzenie kont użytkowników. Lekarz, który otrzyma 
 #figure(image("img/join.png", width: 40%), caption: "Formularz rejestracji")
 == Logowanie
 #figure(image("img/sign_in.png", width: 40%), caption: "Formularz logowania")
+
 
