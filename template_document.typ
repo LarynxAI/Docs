@@ -1,5 +1,7 @@
 #import "@preview/note-me:0.3.0": *
 #import "@preview/tablex:0.0.9": tablex, rowspanx, colspanx
+#set page(numbering: "1")
+
 #let insa-short(
   author : none,
   date : none,
@@ -23,10 +25,12 @@
     footer: [
       #place(
         right,
-        dx: 1.55cm,
+        dx: 0cm,
         dy: 0.58cm,
-        context(text(fill: black, weight: 0, font: "Cascadia Code", fallback: false, [#counter(page).display()]))
+        context(text(fill: black, font: "Cascadia Code", [strona #counter(page).display()]))
+
       )
+      
     ]
   )
   doc
@@ -78,3 +82,5 @@ Treść
 	image("img/template_picture.png", width: 50%),
 	caption: "Przykładowy rysunek"
 )
+
+#pagebreak()
