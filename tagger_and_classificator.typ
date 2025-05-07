@@ -56,27 +56,27 @@ Podobnie jak w przypadku MedTagger, aplikacja webowa MedCategorizer została zbu
 Poniżej prezentujemy schematy: architektury, bazy danych oraz modele danych.
 #figure(
 	image("img_tagger_and_classificator/architecture.png", width: 90%),
-	caption: "Schemat architektury aplikacji"
+	caption: "Schemat architektury aplikacji."
 )
 
 #figure(
 	image("img_tagger_and_classificator/database_schema.png", width: 90%),
-	caption: "Schemat bazy danych"
+	caption: "Schemat bazy danych."
 )
 
 #figure(
 	image("img_tagger_and_classificator/model_pacjent.png", width: 90%),
-	caption: "Model danych - pacjent"
+	caption: "Model danych - pacjent."
 )
 
 #figure(
 	image("img_tagger_and_classificator/model_rekord.png", width: 90%),
-	caption: "Model danych - rekord"
+	caption: "Model danych - rekord."
 )
 
 #figure(
 	image("img_tagger_and_classificator/model_klasyfikator.png", width: 90%),
-	caption: "Model danych - klasyfikator"
+	caption: "Model danych - klasyfikator."
 )
 
 = Komponenty, których funkcjonalności nie uległy znaczącej zmianie
@@ -89,20 +89,20 @@ Poniżej prezentujemy schematy: architektury, bazy danych oraz modele danych.
 Zmiana objęła sposób rejestracji użytkowników. Nie trzeba podawać kodu zapraszającego do dołączenia do datasetu zdjęć. Dołączanie do datasetu przeniesiono do podaplikacji ImageTagger.
 #figure(
 	image("img_tagger_and_classificator/tworzenie_konta.png", width: 40%),
-	caption: "Nowy formularz rejestacji do panelu administracyjnego"
+	caption: "Nowy formularz rejestacji do panelu administracyjnego."
 )
 
 == Panel administracyjny
 Aplikacja posiada panel administracyjny, który pozwala na zarządzanie użytkownikami, zdjęciami, oznaczeniami oraz kartoteką pacjentów. Jest to wspólny panel administracyjny dla obydwóch podaplikacji. Panel ten jest dostępny pod adresem `/admin` i wymaga zalogowania się za pomocą konta administratora.
 #figure(
 	image("img_tagger_and_classificator/logowanie.png", width: 40%),
-	caption: "Logowanie do panelu administracyjnego"
+	caption: "Logowanie do panelu administracyjnego."
 )
 
 Po zalogowaniu widoczne są 3 główne sekcje: ImageTragger, Patient_records oraz Uwierzytelnienie i autoryzacja. Każda z głównych sekcji składa się z kilku sekcji opisanych poniżej.
 #figure(
 	image("img_tagger_and_classificator/admin_zalogowany.png", width: 60%),
-	caption: "Sekcje panelu administracyjnego"
+	caption: "Sekcje panelu administracyjnego."
 )
 
 1. *Datasets* - sekcja pozwalająca na zarządzanie zbiorami zdjęć.
