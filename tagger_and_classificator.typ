@@ -84,6 +84,8 @@ Poniżej prezentujemy schematy: architektury, bazy danych oraz modele danych.
 2. Moduł oznaczania zdjęć (tu tylko wprowadzono możliwość eksportu tagów zdjęcia).
 3. Historia oznaczeń.
 
+#pagebreak()
+
 = Komponenty nowe lub zmienione
 == Rejestracja użytkowników
 Zmiana objęła sposób rejestracji użytkowników. Nie trzeba podawać kodu zapraszającego do dołączenia do datasetu zdjęć. Dołączanie do datasetu przeniesiono do podaplikacji ImageTagger.
@@ -140,9 +142,11 @@ Komponent kartoteki pacjentów to miejsce, w którym zarządzamy pacjentem oraz 
 W tym miejscu lekarz może wybrać klasyfikator, który ma przeprowadzić analizę zdjęcia oraz załącza je.
 #figure(image("img_tagger_and_classificator/kartoteka_lekarz_rekord_nowy.png", width: 80%), caption: "Dodanie nowego rekordu w kartotece pacjenta. ") \ 
 
+#pagebreak()
+
 === Podgląd rekordu pacjenta
-W podglądzie rekorddu lekarz może zobaczyć rezultat klasyfikacji zdjęcia. Jest też możliwość podglądu przesłanego obrazu. 
-#figure(image("img_tagger_and_classificator/kartoteka_lekarz_rekord_podglad.png", width: 80%), caption: "Podgląd rekordu pacjenta.") \
+W podglądzie rekordu lekarz może zobaczyć rezultat klasyfikacji zdjęcia. Jest też możliwość podglądu przesłanego obrazu, który przekazano do analizy. 
+#figure(image("img_tagger_and_classificator/kartoteka_lekarz_rekord_podglad.png", width: 75%), caption: "Podgląd rekordu pacjenta.") \
 
 
 = Klasyfikator
@@ -165,7 +169,7 @@ Napisano skrypt w języku Python przeprowadzający klasyfikację binarną zdję�
 9. Ewaluacja modelu na zbiorze walidacyjnym.
 10. Zapis modelu do pliku.
 
-=== Żądanie sklasyfikowania obiektu
+=== Żądanie sklasyfikowania zdjęcia
 Lekarz tworząc nowy rekord w kartotece pacjenta może zlecić jego sklasyfikowanie przy użyciu wybranego klasyfikatora. Podaplikacja kartoteki wysyła żądanie HTTP na stosowny endpoint klasyfikatora. Żądanie zawiera nazwę klasyfikatora oraz zdjęcie do sklasyfikowania (adres URL w chmurze R2). W odpowiedzi zwracany jest wynik klasyfikacji w postaci łańcucha znaków, który zapisuje się do rekordu. Każdorazowy podgląd rekordu pacjenta pokaże rezultat klasyfikacji oraz nazwę klasyfikatora, który przeprowadził analizę. 
 
 == Osiągnięte rezultaty
@@ -180,6 +184,8 @@ Administrator ma możliwość zarządzania profilami pacjentów. W tym celu moż
 == Zarządzanie rekordami pacjentów
 Administrator ma możliwość zarządzania rekordami pacjentów. W tym celu może dodawać, edytować i usuwać rekordy pacjentów. \
 #figure(image("img_tagger_and_classificator/admin_pacjent_zmiana_rekordu.png", width: 80%), caption: "Edycja rekordu przez administratora") \
+
+#pagebreak()
 
 == Zarządzanie klasyfikatorami
 Zarząd nad dostępnymi klasyfikatorami pełni tylko administrator aplikacji. Może dodawać, usuwać lub wyłączyć korzystanie z klasyfikatora (usunąć go z listy rozwijanej) w widoku rekordu pacjenta. Administrator dba o to, aby podaplikacja kartoteki pacjentów współistniała z klasyfikatorem na polu oferowanych funkcjonalności. \
