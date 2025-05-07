@@ -116,34 +116,34 @@ Po zalogowaniu widoczne są 3 główne sekcje: ImageTragger, Patient_records ora
 9. *Użytkownicy* - sekcja pozwalająca na zarządzanie użytkownikami, ich hasłami oraz uprawnieniami.
 
 == Logowanie
-#figure(image("img_tagger_and_classificator/sign_in.png", width: 40%), caption: "Formularz logowania") \
+#figure(image("img_tagger_and_classificator/sign_in.png", width: 40%), caption: "Formularz logowania.") \
 Moduł logowania się do aplikacji jest jeden, spójny dla wszystkich podaplikacji. Pomyślne zalogowanie przyznaje dostęp do każdej podaplikacji. \
 
 == Kartoteki pacjentów
 Komponent kartoteki pacjentów to miejsce, w którym zarządzamy pacjentem oraz wpisami z badań. W tym miejscu lekarz może wstawić zdjęcie krtani pacjenta i wysłać je do analizy przez klasyfikator. 
 
-#figure(image("img_tagger_and_classificator/kartoteka.png", width: 80%), caption: "Widok kartoteki pacjentów") \
+#figure(image("img_tagger_and_classificator/kartoteka.png", width: 80%), caption: "Widok kartoteki pacjentów - lista pacjentów.") \
 
 === Dodawanie nowego pacjenta do kartoteki
-#figure(image("img_tagger_and_classificator/dodawanie_pacjentow.png", width: 80%), caption: "Dodawanie pacjenta") \
+#figure(image("img_tagger_and_classificator/dodawanie_pacjentow.png", width: 80%), caption: "Dodawanie pacjenta.") \
 
 === Usuwanie pacjenta z kartoteki
-#figure(image("img_tagger_and_classificator/usuwanie_pacjenta.png", width: 80%), caption: "Usuwanie pacjenta ") \
+#figure(image("img_tagger_and_classificator/usuwanie_pacjenta.png", width: 80%), caption: "Usuwanie pacjenta. ") \
 
-=== Dodawanie rekordu do kartoteki pacjenta
-// TODO
-[JB: oczekuję na zrealizowaną funkcjonalność] \
-[] \
-[] \
-[] \
+=== Lista rekordów w kartotece pacjenta
+#figure(image("img_tagger_and_classificator/kartoteka_lekarz_rekord.png", width: 80%), caption: "Lista rekordów pacjenta.") \
 
-=== Żądanie sklasyfikowania obiektu
-// TODO
-Lekarz dodając zdjęcie do kartoteki pacjenta (lekarz tworzy nowy rekord podczas wizyty) może zlecić jego sklasyfikowanie przy użyciu wybranego klasyfikatora. Podaplikacja kartoteki wysyła żądanie HTTP na stosowny endpoint klasyfikatora. Żądanie zawiera nazwę klasyfikatora oraz zdjęcie do sklasyfikowania (adres URL w chmurze R2). W odpowiedzi zwracany jest wynik klasyfikacji w postaci łańcucha znaków, który obrabia się celem estetycznej prezentacji w kartotece oraz zapisuje się go do bazy danych. \
-[JB: tu obrazek] \
-[] \
-[] \
-[] \
+=== Dodawanie notatki do rekordu pacjenta
+#figure(image("img_tagger_and_classificator/kartoteka_lekarz_rekord_notatka.png", width: 80%), caption: "Dodanie notatki do rekordu pacjenta.") \
+
+=== Dodanie rekordu do kartoteki pacjenta
+W tym miejscu lekarz może wybrać klasyfikator, który ma przeprowadzić analizę zdjęcia oraz załącza je.
+#figure(image("img_tagger_and_classificator/kartoteka_lekarz_rekord_nowy.png", width: 80%), caption: "Dodanie nowego rekordu w kartotece pacjenta. ") \ 
+
+=== Podgląd rekordu pacjenta
+W podglądzie rekorddu lekarz może zobaczyć rezultat klasyfikacji zdjęcia. Jest też możliwość podglądu przesłanego obrazu. 
+#figure(image("img_tagger_and_classificator/kartoteka_lekarz_rekord_podglad.png", width: 80%), caption: "Podgląd rekordu pacjenta.") \
+
 
 = Klasyfikator
 == Włączenie do aplikacji, komunikacja podaplikacja - klasyfikator
@@ -164,6 +164,9 @@ Napisano skrypt w języku Python przeprowadzający klasyfikację binarną zdję�
 8. Trening modelu.
 9. Ewaluacja modelu na zbiorze walidacyjnym.
 10. Zapis modelu do pliku.
+
+=== Żądanie sklasyfikowania obiektu
+Lekarz tworząc nowy rekord w kartotece pacjenta może zlecić jego sklasyfikowanie przy użyciu wybranego klasyfikatora. Podaplikacja kartoteki wysyła żądanie HTTP na stosowny endpoint klasyfikatora. Żądanie zawiera nazwę klasyfikatora oraz zdjęcie do sklasyfikowania (adres URL w chmurze R2). W odpowiedzi zwracany jest wynik klasyfikacji w postaci łańcucha znaków, który zapisuje się do rekordu. Każdorazowy podgląd rekordu pacjenta pokaże rezultat klasyfikacji oraz nazwę klasyfikatora, który przeprowadził analizę. 
 
 == Osiągnięte rezultaty
 Dane, którymi dysponujemy nie są liczne. Na moment pisania raportu zdjęć zdrowych jest ok. 20 a chorych ok. 80. Warto wspomnieć, że są to zdjęcia otagowane wielokrotnie, przez wielu lekarzy (otagowań jest 266). Wyniki nie są zadowalające, klasyfikator nie zwraca sensownych odpowiedzi. 
