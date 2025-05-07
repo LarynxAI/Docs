@@ -8,7 +8,7 @@
   set text(lang: "pl")
   set page(
     "a4",
-    margin: (top: 3cm, bottom: 2cm, left: 1em, right:1em),
+    margin: (top: 3cm, bottom: 2cm, left: 2em, right: 2em),
     header: [
       #place(left, [#image("img_tagger_and_classificator/logo.png", height: 3cm) #text(smallcaps("   Projekt Grupowy, informatyka 2024/2025"), baseline: -4em)], dy: 2cm)
       #place(right + bottom)[
