@@ -10,7 +10,7 @@
     "a4",
     margin: (top: 3cm, bottom: 2cm, left: 1em, right:1em),
     header: [
-      #place(left, [#image("img_tagger_and_classificator/logo.png", height: 3cm) #text(smallcaps("   Projekt Grupowy, informatyka 2025/2026"), baseline: -4em)], dy: 2cm)
+      #place(left, [#image("img_tagger_and_classificator/logo.png", height: 3cm) #text(smallcaps("   Projekt Grupowy, informatyka 2024/2025"), baseline: -4em)], dy: 2cm)
       #place(right + bottom)[
         #author\
         #if type(date) == datetime [
@@ -52,7 +52,7 @@
 Aplikacja webowa MedCategorizer jest narzędziem bazującym na ramie uprzednio wydanej aplikacji MedTagger i stanowi jej rozszerzenie. MedCategorizer pozwala gromadzić zdjęcia laryngoskopowe pacjentów w ramach konta pacjenta a także je tagować (celem stworzenia bazy obrazów uczących klasyfikator) lub klasyfikować (na podstawie decyzji klasyfikatora). Szczegóły dotyczące komponentów MedTagger znajdują się w dokumencie "Aplikacja webowa do tagowania zdjęć" napisanym wcześniej - te komponenty nie uległy zmianie.
 
 = Architektura aplikacji
-Podobnie jak w przypadku MedTagger, aplikacja webowa MedCategorizer została zbudowana przy użyciu frameworka Django, ze względu na jego prostotę oraz dużą ilość dostępnych bibliotek ułatwiających pracę. Aplikacja składa się z kilku części: panelu administracyjnego całej aplikacji, podaplikacji MedTagger oraz podaplikacji kartoteki pacjentów. Do przechowywania danych użytkowników, danych z kartoteki pacjentów, wyników klasyfikacji i oznaczeń nowych obrazów używana jest baza danych PostgreSQL. Do przechowywania samych zdjęć używana jest chmura Cloudflare R2. Kolejnym elementem aplikacji jest klasyfikator, który zrealizowano tak, aby mógł on być osobnym mikroserwisem. Klasyfikator i kartoteka pacjentów z niego korzystająca są względem siebie niczym czarne skrzynki (black box). Pozwala to na łatwą wymianę, wybór innego typu klasyfikatora lub zwiększenie wydajności tego komponentu poprzez dołączenie nowych instancji. Klasyfikator ma dostęp do chmury Cloudflare R2, z której pobiera zbiory uczące lub obrazy do analizy i sklasyfikowania. Komunikacja między podaplikacją kartoteki pacjentów a klasyfikatorem odbywa się za pomocą API REST. Klasyfikator przyjmuje adres w chmurze R2 obrazu do sklasyfikowania oraz nazwę modelu, który ma być użyty do klasyfikacji. Klasyfikator zwraca wynik klasyfikacji w formacie JSON, który wraz z danymi z kartoteki pacjenta zapisuje się do bazy danych PostgreSQL oraz wyświetla w otwartej karcie pacjenta. \
+Podobnie jak w przypadku MedTagger, aplikacja webowa MedCategorizer została zbudowana przy użyciu frameworka Django, ze względu na jego prostotę oraz dużą ilość dostępnych bibliotek ułatwiających pracę. Aplikacja składa się z kilku części: panelu administracyjnego całej aplikacji, podaplikacji MedTagger oraz podaplikacji kartoteki pacjentów. Do przechowywania danych użytkowników, danych z kartoteki pacjentów, wyników klasyfikacji i oznaczeń nowych obrazów używana jest baza danych PostgreSQL. Do przechowywania samych zdjęć używana jest chmura Cloudflare R2. Kolejnym elementem aplikacji jest klasyfikator, który zrealizowano tak, aby mógł on być osobnym komponentem. Klasyfikator i kartoteka pacjentów z niego korzystająca są względem siebie niczym czarne skrzynki (black box). Pozwala to na łatwą wymianę, wybór innego typu klasyfikatora lub zwiększenie wydajności tego komponentu poprzez dołączenie nowych instancji. Klasyfikator ma dostęp do chmury Cloudflare R2, z której pobiera obrazy do analizy i sklasyfikowania. Komunikacja między podaplikacją kartoteki pacjentów a klasyfikatorem odbywa się za pomocą REST API. Klasyfikator przyjmuje adres w chmurze R2 obrazu do sklasyfikowania oraz nazwę modelu, który ma być użyty do klasyfikacji. Klasyfikator zwraca wynik klasyfikacji w postaci łańcucha znaków, który wraz z danymi z kartoteki pacjenta zapisuje się do bazy danych PostgreSQL oraz wyświetla w otwartej karcie pacjenta. \
 Poniżej prezentujemy schematy: architektury, bazy danych oraz modele danych.
 #figure(
 	image("img_tagger_and_classificator/architecture.png", width: 90%),
@@ -79,7 +79,7 @@ Poniżej prezentujemy schematy: architektury, bazy danych oraz modele danych.
 	caption: "Model danych - klasyfikator"
 )
 
-= Komponenty, których funkcjonalności nie uległy zmianie
+= Komponenty, których funkcjonalności nie uległy znaczącej zmianie
 1. Sposób przesyłania zbioru obrazów do oznaczenia.
 2. Moduł oznaczania zdjęć (tu tylko wporwadzono możliwość eksportu tagów zdjęcia).
 3. Historia oznaczeń.
@@ -105,15 +105,15 @@ Po zalogowaniu widoczne są 3 główne sekcje: ImageTragger, Patient_records ora
 	caption: "Sekcje panelu administracyjnego"
 )
 
-1. *Datasets* - sekcja pozwalająca na zarządzanie zbiorami zdjęć
-2. *Images* - sekcja pozwalająca na zarządzanie pojedynczymi zdjęciami
-3. *Tag assignments* - sekcja pozwalająca na zarządzanie i wgląd w oznaczenia zdjęć
-4. *Tags* - sekcja pozwalająca na definiowanie dostępnych tagów
-5. *Classifier models* - sekcja zarządzania modelami klasyfikatora chrób krtani
-6. *Patient file records* - sekcja pozwalająca na zarządzanie kartotekami pacjentów (wpisy z badań)
+1. *Datasets* - sekcja pozwalająca na zarządzanie zbiorami zdjęć.
+2. *Images* - sekcja pozwalająca na zarządzanie pojedynczymi zdjęciami.
+3. *Tag assignments* - sekcja pozwalająca na zarządzanie i wgląd w oznaczenia zdjęć.
+4. *Tags* - sekcja pozwalająca na definiowanie dostępnych tagów.
+5. *Classifier models* - sekcja zarządzania modelami klasyfikatora dostępnego w aplikacji.
+6. *Patient file records* - sekcja pozwalająca na zarządzanie kartotekami pacjentów (wpisy z badań).
 7. *Patient file profiles* - sekcja pozwalająca na zarządzanie profilami pacjentów.
-8. *Grupy* - sekcja pozwalająca na zarządzanie grupami użytkowników
-9. *Użytkownicy* - sekcja pozwalająca na zarządzanie użytkownikami, ich hasłami oraz uprawnieniami
+8. *Grupy* - sekcja pozwalająca na zarządzanie grupami użytkowników.
+9. *Użytkownicy* - sekcja pozwalająca na zarządzanie użytkownikami, ich hasłami oraz uprawnieniami.
 
 == Logowanie
 #figure(image("img_tagger_and_classificator/sign_in.png", width: 40%), caption: "Formularz logowania") \
@@ -130,7 +130,7 @@ Komponent kartoteki pacjentów to miejsce, w którym zarządzamy pacjentem oraz 
 === Usuwanie pacjenta z kartoteki
 #figure(image("img_tagger_and_classificator/usuwanie_pacjenta.png", width: 80%), caption: "Usuwanie pacjenta ") \
 
-=== Dodawanie rekodru do kartoteki pacjenta
+=== Dodawanie rekordu do kartoteki pacjenta
 // TODO
 [JB: oczekuję na zrealizowaną funkcjonalność] \
 [] \
@@ -139,23 +139,26 @@ Komponent kartoteki pacjentów to miejsce, w którym zarządzamy pacjentem oraz 
 
 === Żądanie sklasyfikowania obiektu
 // TODO
-Lekarz dodając zdjęcie do kartoteki pacjenta (lekarz tworzy nowy rekord podczas wizyty), może zlecić jego sklasyfikowanie przy użyciu wybranego klasyfikatora. Podaplikacja kartoteki wysyła żądanie HTTP na stosowny endpoint klasyfikatora. Żądanie zawiera nazwę klasyfikatora oraz zdjęcie do sklasyfikowania (adres URL w chmurze R2). W odpowiedzi zwracany jest wynik klasyfikacji w formacie JSON, który obrabia się celem estetycznej prezentacji w kartotece oraz zapisuje się go do bazy danych.
-[JB: tu obrazek]
+Lekarz dodając zdjęcie do kartoteki pacjenta (lekarz tworzy nowy rekord podczas wizyty) może zlecić jego sklasyfikowanie przy użyciu wybranego klasyfikatora. Podaplikacja kartoteki wysyła żądanie HTTP na stosowny endpoint klasyfikatora. Żądanie zawiera nazwę klasyfikatora oraz zdjęcie do sklasyfikowania (adres URL w chmurze R2). W odpowiedzi zwracany jest wynik klasyfikacji w postaci łańcucha znaków, który obrabia się celem estetycznej prezentacji w kartotece oraz zapisuje się go do bazy danych. \
+[JB: tu obrazek] \
+[] \
+[] \
+[] \
 
 = Klasyfikator
-== Włączenie w aplikację i komunikacja z klasyfikatorem
+== Włączenie do aplikacji, komunikacja podaplikacja - klasyfikator
 Podjęto dezycję o zaimplementowaniu ramy klasyfikatora (w postaci usługi z endpointem), dzięki czemu podmiana modeli klasyfikatora jest możliwa a dalsze prace mogą być prowadzone bez przeszkód i przestojów z wykorzystaniem mock'owego klasyfikatora dopóki właściwy klasyfikator nie zostanie dostarczony. W ten sposób umożliwiliśmy pracę równoległą. Ustalono również wymogi związane z komunikacją między elementami systemu. \ 
-Komunikacja z klasyfikatorem odbywa się za pomocą REST API. Klasyfikator przyjmuje adres w chmurze R2 obrazu do sklasyfikowania oraz nazwę modelu, który ma być użyty do klasyfikacji. Klasyfikator zwraca wynik klasyfikacji w formacie JSON i zapisuje go wraz z danymi z kartoteki pacjenta do bazy danych PostgreSQL. Na końcu, gdy właściwy klasyfikator - binarny w etapie 1. - został dostarczony, podmieniono mock'owy klasyfikator na właściwy.
+Komunikacja z klasyfikatorem odbywa się za pomocą REST API. Klasyfikator przyjmuje adres w chmurze R2 obrazu do sklasyfikowania oraz nazwę modelu, który ma być użyty do klasyfikacji. Klasyfikator zwraca wynik klasyfikacji w postaci łańcucha znaków i zapisuje go wraz z danymi z kartoteki pacjenta do bazy danych PostgreSQL. Na końcu, gdy właściwy klasyfikator - binarny w etapie 1. - został dostarczony, podmieniono mock'owy klasyfikator na właściwy.
 
 == Szczegóły techniczne klasyfikatora
 Napisano skrypt w języku Python przeprowadzający klasyfikację binanrną zdjęć. Wykorzystano biblioteki TensorFlow oraz Keras. Wykorzystano również MobileNetV2 jako bazowy model do klasyfikacji ze względu na fakt szybkiego uczenia. 
 
 === Procedura uczenia klasyfikatora
-1. Uruchomienie środowiska
+1. Uruchomienie środowiska.
 2. Wczytanie tagów z pliku CSV oraz zdjęć z chmury R2. Utworzenie krotek (tag, zdjęcie).
 3. Odrzucenie krotek z informacją o nieczytelnym zdjęciu.
-4. Podział ktotek na 2 zbiory: krotki dla zdjęć zdrowych "zbiór zdrowy" i krotki dla zdjęć chorych "zbiór chory".
-5. Przygotowanie zbiorów treningowego i walidacyjnego. 
+4. Podział krotek na 2 zbiory: krotki dla zdjęć zdrowych "zbiór zdrowy" i krotki dla zdjęć chorych "zbiór chory".
+5. Przygotowanie zbioru treningowego i walidacyjnego. 
 6. Obliczenie wag klas celem zbalansowania znacznej różnicy liczności zbiorów zdrowych i chorych.
 7. Budowa modelu transfer learningowego MobileNetV2 wraz z podstawową data augmentation (tj. rotacja, flip, zoom, rescale).
 8. Trening modelu.
@@ -176,7 +179,7 @@ Administrator ma możliwość zarządzania rekordami pacjentów. W tym celu moż
 #figure(image("img_tagger_and_classificator/admin_pacjent_zmiana_rekordu.png", width: 80%), caption: "Edycja rekordu przez administratora") \
 
 == Zarządzanie klasyfikatorami
-Zarząd nad dostępnymi klasyfikatorami pełni tylko administrator aplikacji. Może dodawać, usuwać lub wyłączyć korzystanie z klasyfikatora z listy dostępnych dla lekarzy w widoku rekordu pacjenta. Administrator dba o to, aby podaplikacja kartoteki pacjentów współistniała z klasyfikatorem na polu oferowanych funkcjonalności. \
+Zarząd nad dostępnymi klasyfikatorami pełni tylko administrator aplikacji. Może dodawać, usuwać lub wyłączyć korzystanie z klasyfikatora (usunąć go z listy rozwijanej) w widoku rekordu pacjenta. Administrator dba o to, aby podaplikacja kartoteki pacjentów współistniała z klasyfikatorem na polu oferowanych funkcjonalności. \
 
 #figure(image("img_tagger_and_classificator/admin_klasyfikatory.png", width: 80%), caption: "Lista wszystkich dodanych klasyfikatorów") \
 Dodając klasyfikator, zapisuje się jego nazwę, opis oraz adres URL endpointu klasyfikatora, na który wysyła się obraz do klasyfikacji. \
