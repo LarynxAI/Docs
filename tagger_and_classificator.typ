@@ -81,7 +81,7 @@ Poniżej prezentujemy schematy: architektury, bazy danych oraz modele danych.
 
 = Komponenty, których funkcjonalności nie uległy znaczącej zmianie
 1. Sposób przesyłania zbioru obrazów do oznaczenia.
-2. Moduł oznaczania zdjęć (tu tylko wporwadzono możliwość eksportu tagów zdjęcia).
+2. Moduł oznaczania zdjęć (tu tylko wprowadzono możliwość eksportu tagów zdjęcia).
 3. Historia oznaczeń.
 
 = Komponenty nowe lub zmienione
@@ -89,7 +89,7 @@ Poniżej prezentujemy schematy: architektury, bazy danych oraz modele danych.
 Zmiana objęła sposób rejestracji użytkowników. Nie trzeba podawać kodu zapraszającego do dołączenia do datasetu zdjęć. Dołączanie do datasetu przeniesiono do podaplikacji ImageTagger.
 #figure(
 	image("img_tagger_and_classificator/tworzenie_konta.png", width: 40%),
-	caption: "Nowy formularz rejestacji do panelu administracyjnego."
+	caption: "Nowy formularz rejestracji do panelu administracyjnego."
 )
 
 == Panel administracyjny
@@ -147,11 +147,11 @@ Lekarz dodając zdjęcie do kartoteki pacjenta (lekarz tworzy nowy rekord podcza
 
 = Klasyfikator
 == Włączenie do aplikacji, komunikacja podaplikacja - klasyfikator
-Podjęto dezycję o zaimplementowaniu ramy klasyfikatora (w postaci usługi z endpointem), dzięki czemu podmiana modeli klasyfikatora jest możliwa a dalsze prace mogą być prowadzone bez przeszkód i przestojów z wykorzystaniem mock'owego klasyfikatora dopóki właściwy klasyfikator nie zostanie dostarczony. W ten sposób umożliwiliśmy pracę równoległą. Ustalono również wymogi związane z komunikacją między elementami systemu. \ 
+Podjęto decyzję o zaimplementowaniu ramy klasyfikatora (w postaci usługi z endpointem), dzięki czemu podmiana modeli klasyfikatora jest możliwa a dalsze prace mogą być prowadzone bez przeszkód i przestojów z wykorzystaniem mock'owego klasyfikatora dopóki właściwy klasyfikator nie zostanie dostarczony. W ten sposób umożliwiliśmy pracę równoległą. Ustalono również wymogi związane z komunikacją między elementami systemu. \ 
 Komunikacja z klasyfikatorem odbywa się za pomocą REST API. Klasyfikator przyjmuje adres w chmurze R2 obrazu do sklasyfikowania oraz nazwę modelu, który ma być użyty do klasyfikacji. Klasyfikator zwraca wynik klasyfikacji w postaci łańcucha znaków i zapisuje go wraz z danymi z kartoteki pacjenta do bazy danych PostgreSQL. Na końcu, gdy właściwy klasyfikator - binarny w etapie 1. - został dostarczony, podmieniono mock'owy klasyfikator na właściwy.
 
 == Szczegóły techniczne klasyfikatora
-Napisano skrypt w języku Python przeprowadzający klasyfikację binanrną zdjęć. Wykorzystano biblioteki TensorFlow oraz Keras. Wykorzystano również MobileNetV2 jako bazowy model do klasyfikacji ze względu na fakt szybkiego uczenia. 
+Napisano skrypt w języku Python przeprowadzający klasyfikację binarną zdjęć. Wykorzystano biblioteki TensorFlow oraz Keras. Wykorzystano również MobileNetV2 jako bazowy model do klasyfikacji ze względu na fakt szybkiego uczenia. 
 
 === Procedura uczenia klasyfikatora
 1. Uruchomienie środowiska.
