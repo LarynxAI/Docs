@@ -156,6 +156,7 @@ Komunikacja z klasyfikatorem odbywa się za pomocą REST API. Klasyfikator przyj
 
 == Szczegóły techniczne klasyfikatora
 Napisano skrypt w języku Python przeprowadzający klasyfikację binarną zdjęć. Wykorzystano biblioteki TensorFlow oraz Keras. Wykorzystano również MobileNetV2 jako bazowy model do klasyfikacji ze względu na fakt szybkiego uczenia. 
+Klasyfikator dokonujący analizy został obudowany przez serwer FastAPI, który umożliwia wystawienie endpointu HTTP. Klasyfikator można uruchomić jako kontener Docker.
 
 === Procedura uczenia klasyfikatora
 1. Uruchomienie środowiska.
@@ -170,7 +171,7 @@ Napisano skrypt w języku Python przeprowadzający klasyfikację binarną zdję�
 10. Zapis modelu do pliku.
 
 === Żądanie sklasyfikowania zdjęcia
-Lekarz tworząc nowy rekord w kartotece pacjenta może zlecić jego sklasyfikowanie przy użyciu wybranego klasyfikatora. Podaplikacja kartoteki wysyła żądanie HTTP na stosowny endpoint klasyfikatora. Żądanie zawiera nazwę klasyfikatora oraz zdjęcie do sklasyfikowania (adres URL w chmurze R2). W odpowiedzi zwracany jest wynik klasyfikacji w postaci łańcucha znaków, który zapisuje się do rekordu. Każdorazowy podgląd rekordu pacjenta pokaże rezultat klasyfikacji oraz nazwę klasyfikatora, który przeprowadził analizę. 
+Lekarz tworząc nowy rekord w kartotece pacjenta może zlecić jego sklasyfikowanie przy użyciu wybranego klasyfikatora. Podaplikacja kartoteki wysyła żądanie HTTP POST na stosowny endpoint klasyfikatora. Żądanie zawiera nazwę klasyfikatora oraz zdjęcie do sklasyfikowania (adres URL w chmurze R2). W odpowiedzi zwracany jest wynik klasyfikacji w postaci łańcucha znaków, który zapisuje się do rekordu. Każdorazowy podgląd rekordu pacjenta pokaże rezultat klasyfikacji oraz nazwę klasyfikatora, który przeprowadził analizę. 
 
 == Osiągnięte rezultaty
 Dane, którymi dysponujemy nie są liczne. Na moment pisania raportu zdjęć zdrowych jest ok. 20 a chorych ok. 80. Warto wspomnieć, że są to zdjęcia otagowane wielokrotnie, przez wielu lekarzy (otagowań jest 266). Wyniki nie są zadowalające, klasyfikator nie zwraca sensownych odpowiedzi. 
